@@ -2,11 +2,13 @@
     session_start();
     $_SESSION['activePage'] = isset($_GET['page']) ? $_GET['page'] : null;
 ?>
+
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/style.css">
         <title>Arnitas Ziemeles mājaslapa</title>
     </head>
     <body>

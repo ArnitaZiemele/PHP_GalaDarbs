@@ -6,7 +6,7 @@
 <?php if (isset($msg)){ // ši sekcija ir priekš ziņu izvades ?> 
     <p style="font-weight: bold;"><?php echo $msg?>
         <br>
-        <a href="<?php echo $_SERVER['PHP_SELF']?>">reload page</a>
+        <a href="index.php?page=gallery">reload page</a>
     </p>
 <?php } ?>
 
@@ -35,13 +35,13 @@
     </form>
     <br><hr/><br>
     <h2>Upload new image:</h2>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
+    <form action="index.php?page=gallery" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title:</label><br><input type="text" name="title" id="title" size="64">
         </div>
         <div class="form-group">
             <label for="photo">Photo:</label><br><input type="file" name="photo" id="photo">
         </div>
-        <input type="submit" class="btn btn-primary" value="upload">
+        <input type="submit" class="btn btn-primary" value="Augšupielādēt">
     </form>
 </div>  

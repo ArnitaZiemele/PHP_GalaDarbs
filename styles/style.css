@@ -1,23 +1,49 @@
-ul.nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+
+/* kalendārs */
+table.calendar { 
+    border-left:1px solid #999; 
 }
-ul.nav li {
-    float: left;
+td.calendar-day	{
+    min-height:80px; 
+    font-size:11px; 
+    position:relative; 
+} 
+* html div.calendar-day { 
+    height:80px; 
 }
-ul.nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+td.calendar-day:hover { 
+    background:#eceff5; 
 }
-ul.nav li a:hover {
-    background-color: #111;
+td.calendar-day-np {
+    background:#eee; 
+    min-height:80px; 
+} 
+* html div.calendar-day-np { 
+    height:80px; 
 }
-ul.nav li.active {
-    background-color: #4CAF50;
+td.calendar-day-head { 
+    background:#ccc; 
+    font-weight:bold; 
+    text-align:center; 
+    width:120px; 
+    padding:5px; 
+    border-bottom:1px solid #999; 
+    border-top:1px solid #999; 
+    border-right:1px solid #999; 
+}
+div.day-number { 
+    background:#999; 
+    padding:5px; 
+    color:#fff; 
+    font-weight:bold; 
+    float:right; 
+    margin:-5px -5px 0 0; 
+    width:20px; 
+    text-align:center; 
+}
+td.calendar-day, td.calendar-day-np {
+    width:120px; 
+    padding:5px; 
+    border-bottom:1px solid #999; 
+    border-right:1px solid #999; 
 }
