@@ -1,5 +1,5 @@
 <?php
-    $page="edit-profile";
+    $page="profile-edit";
     
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: index.php?page=login");
@@ -24,7 +24,7 @@
             
             if(mysqli_stmt_execute($stmt)){
                 // info veiksmīgi noaminīts, redirekto uz profila lapu un ieseto jaunos parametrus
-                header("location: index.php?page=account");
+                header("location: index.php?page=profile");
     
                 $_SESSION["full_name"] = $full_name;
                 $_SESSION["gender"] = $gender;
@@ -42,7 +42,7 @@
 <div class="container mt-3" style="width: 400px">
     <h2>Labot profilu</h2>
     <p>Lūdzu aizpildiet laukus, ko vēlaties labot.</p>
-    <form action="index.php?page=edit-profile" method="post"> 
+    <form action="index.php?page=profile-edit" method="post"> 
         <div class="form-group">
             <label>Vārds uzvārds</label>
             <input type="text" name="full_name" class="form-control" value="<?php echo $full_name; ?>">
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Mainīt">
-            <a class="btn btn-secondary" href="index.php?page=account">Atcelt</a>
+            <a class="btn btn-secondary" href="index.php?page=profile">Atcelt</a>
         </div>
     </form>
 </div> 

@@ -22,7 +22,7 @@
             
             // Pārbauda vai nav kļūdas, pirms pievieno datubāzei 
             mysql_query("set names 'utf8'");
-            if(empty($title_err) && empty($title_err)){
+            if(empty($title_err) && empty($content_err)){
                 $sql = "INSERT INTO articles (title, content) VALUES (?, ?)";
                 if($stmt = mysqli_prepare($link, $sql)){
                     mysqli_stmt_bind_param($stmt, "ss", $title, $content);

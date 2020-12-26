@@ -20,10 +20,10 @@
             elseif($_GET['page']=='events') {include 'pages/events.php';}
             elseif($_GET['page']=='articles') {include 'pages/articles.php';}
             elseif($_GET['page']=='article') {include 'pages/article.php';}
-            elseif($_GET['page']=='edit-article') {include 'pages/edit-article.php';} 
+            elseif($_GET['page']=='article-edit') {include 'pages/article-edit.php';} 
             elseif($_GET['page']=='contact') {include 'pages/contact.php';}
-            elseif($_GET['page']=='account') {include 'pages/account.php';} 
-            elseif($_GET['page']=='edit-profile') {include 'pages/edit-profile.php';} 
+            elseif($_GET['page']=='profile') {include 'pages/profile.php';} 
+            elseif($_GET['page']=='profile-edit') {include 'pages/profile-edit.php';} 
             elseif($_GET['page']=='login') {include 'pages/login.php';} 
             elseif($_GET['page']=='logout') {include 'pages/logout.php';} 
             elseif($_GET['page']=='register') {include 'pages/register.php';} 

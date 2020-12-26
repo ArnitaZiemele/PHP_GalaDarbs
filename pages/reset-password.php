@@ -70,7 +70,7 @@
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Mainīt">
-            <a class="btn btn-secondary" href="index.php?page=account">Atcelt</a>
+            <a class="btn btn-secondary" href="index.php?page=profile">Atcelt</a>
         </div>
     </form>
 </div> 

@@ -1,5 +1,5 @@
 <?php
-    $page="edit-article";
+    $page="article-edit";
     header("Content-Type: text/html;charset=UTF-8");
     error_reporting(E_ALL ^ E_DEPRECATED);
     require_once "widgets/config.php";
@@ -24,7 +24,7 @@
         
         // Pārbauda vai nav kļūdas, pirms pievieno datubāzei 
         mysql_query("set names 'utf8'");
-        if(empty($title_err) && empty($title_err)){
+        if(empty($title_err) && empty($content_err)){
             $sql = "UPDATE articles SET title = ?, content = ? WHERE id = ?";
             if($stmt = mysqli_prepare($link, $sql)){
                 mysqli_stmt_bind_param($stmt, "ssi", $title, $content, $id);
@@ -60,7 +60,7 @@
 <div class="container mt-3">
     <h2>Labot rakstu</h2>
     <p>Lūdzu aizpildiet laukus, ko vēlaties labot.</p>
-    <form action="index.php?page=edit-article&id=<?php echo $id; ?>" method="post"> 
+    <form action="index.php?page=article-edit&id=<?php echo $id; ?>" method="post"> 
     <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
         <label>Nosaukums</label>
         <input type="text" name="title" class="form-control" value="<?php echo $article['title']; ?>">

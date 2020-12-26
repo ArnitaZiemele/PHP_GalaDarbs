@@ -9,7 +9,7 @@
     <?php
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
         <ul class="nav navbar-right">
-            <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='account') {echo "active";} ?>" href="index.php?page=account"><?php echo $_SESSION['username'] ?></a></li>
+            <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='profile') {echo "active";} ?>" href="index.php?page=profile"><?php echo $_SESSION['username'] ?></a></li>
             <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='logout') {echo "active";} ?>" href="index.php?page=logout">Iziet</a></li>
         </ul>
     <?php } 
