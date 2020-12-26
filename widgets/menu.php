@@ -2,7 +2,7 @@
     <ul class="nav">
         <li class="nav-item"><a class="nav-link <?php if(!isset($_SESSION['activePage'])) {echo "active";} ?>" href="index.php">Sākums</a></li>
         <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='gallery') {echo "active";} ?>" href="index.php?page=gallery">Galerija</a></li>
-        <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='events') {echo "active";} ?>" href="index.php?page=events">Pasākumi</a></li>
+        <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='events') {echo "active";} ?>" href="index.php?page=events&month=<?php echo date('m') ?>&year=<?php echo date('Y') ?>">Pasākumi</a></li>
         <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='articles') {echo "active";} ?>" href="index.php?page=articles">Raksti</a></li>
         <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='contact') {echo "active";} ?>" href="index.php?page=contact">Kontakti</a></li>
     </ul>

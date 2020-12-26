@@ -1,4 +1,6 @@
 <?php
+	header("Content-Type: text/html;charset=UTF-8");
+
 	error_reporting(E_ALL ^ E_DEPRECATED);
 
 	function draw_calendar($month,$year,$events = array()){// Zīmē kalendāru kā tabulu
@@ -68,34 +70,17 @@
 	}
 
 	/* date settings */
-	//$month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
-	//$year = (int)  ($_GET['year'] ? $_GET['year'] : date('Y'));
-	$month = 12;
-	$year = 2020;
-
-	//mēneša kontrolieris
-	$select_month_control = '<select name="month" id="month">';
-	for($x = 1; $x <= 12; $x++) {
-		$select_month_control.= '<option value="'.$x.'"'.($x != $month ? '' : ' selected="selected"').'>'.date('F',mktime(0,0,0,$x,1,$year)).'</option>';
-	}
-	$select_month_control.= '</select>';
-
-	//gada kontrolieris
-	$year_range = 7;
-	$select_year_control = '<select name="year" id="year">';
-	for($x = ($year-floor($year_range/2)); $x <= ($year+floor($year_range/2)); $x++) {
-		$select_year_control.= '<option value="'.$x.'"'.($x != $year ? '' : ' selected="selected"').'>'.$x.'</option>';
-	}
-	$select_year_control.= '</select>';
+	$month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
+	$year = (int)  ($_GET['year'] ? $_GET['year'] : date('Y'));
 
 	//nākošais mēnesis
-	$next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="control">Nākošais mēnesis &gt;&gt;</a>';
+	$next_month_link = '<a href="index.php?page=events&month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="control">Nākošais mēnesis &gt;&gt;</a>';
 
 	//iepriekšējais mēnesis
-	$previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="control">&lt;&lt; 	Iepriekšējais mēnesis</a>';
+	$previous_month_link = '<a href="index.php?page=events&month='.($month != 1 ? $month - 1 : 12).'&year='.($month != 1 ? $year : $year - 1).'" class="control">&lt;&lt; 	Iepriekšējais mēnesis</a>';
 
 	//savieno kontrolierus
-	$controls = '<form method="get">'.$select_month_control.$select_year_control.'&nbsp;<input type="submit" name="submit" value="Go" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$previous_month_link.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$next_month_link.' </form>';
+	$controls = '<form method="get">'.$previous_month_link.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$next_month_link.' </form>';
 
 	//iegūst visus mēneša eventus
 	$db_link = mysql_connect("localhost","root","");
@@ -103,6 +88,7 @@
 		die('Could not connect: ' . mysql_error());
 	}
 	mysql_select_db("privatamajaslapa", $db_link);
+	mysql_query("set names 'utf8'");
 
 	$events = array();
 	$query = "SELECT title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";

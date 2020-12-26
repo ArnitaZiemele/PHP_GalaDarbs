@@ -65,11 +65,11 @@
                 $send_304 = true;                                         // image_time   
         }    
         if ($send_304) { 
-            header('Last-Modified: '.gmdate('D, d M Y H:i:s', $ts).' GMT', true, 304);
+            header('Last-Modified: '.gmdate('%e.%m.%Y H:i:s', $ts).' GMT', true, 304);
             exit(); 
         }
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $image_time).' GMT',  true, 200);// Izvadam Last-Modified uzgalvi 
-        header('Expires: '.gmdate('D, d M Y H:i:s',  $image_time + 86400*365).' GMT',  true, 200);
+        header('Last-Modified: '.gmdate('%e.%m.%Y H:i:s', $image_time).' GMT',  true, 200);// Izvadam Last-Modified uzgalvi 
+        header('Expires: '.gmdate('%e.%m.%Y H:i:s',  $image_time + 86400*365).' GMT',  true, 200);
         header('Content-Length: '.strlen($data)); // Izvadam HTTP uzgalvi   
         header("Content-type: image/{$ext}");    
         echo $data; // Izvadam attēlu 

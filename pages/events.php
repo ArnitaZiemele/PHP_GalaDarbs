@@ -38,8 +38,7 @@
 
 		//uzzīmē calendāru ar kontrolēm
 		echo '<h2 style="float:left; padding-right:30px;">'.date('F',mktime(0,0,0,$month,1,$year)).' '.$year.'</h2>';
-		echo '<div style="float:right;">'.$controls.'</div>';
-		echo '<div style="clear:both;"></div>';
+		echo '<div style="float:left;">'.$controls.'</div>';
 		echo draw_calendar($month,$year,$events);
 		echo '<br /><br />';
 
