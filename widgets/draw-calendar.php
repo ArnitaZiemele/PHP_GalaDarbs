@@ -29,7 +29,7 @@
 				$event_day = $year.'-'.$month.'-'.$list_day;
 				if(isset($events[$event_day])) {
 					foreach($events[$event_day] as $event) {
-						$calendar.= '<div class="event">'.$event['title'].'</div>';
+						$calendar.= '<div class="event">'.$event['title'].'<a href="widgets/event-delete.php?id='.$event['id'].'">X</a></div>';
 					}
 				}
 				else {
@@ -91,7 +91,7 @@
 	mysql_query("set names 'utf8'");
 
 	$events = array();
-	$query = "SELECT title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";
+	$query = "SELECT id, title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";
 	$result = mysql_query($query,$db_link) or die('cannot get results!');
 	while($row = mysql_fetch_assoc($result)) {
 		$events[$row['event_date']][] = $row;
