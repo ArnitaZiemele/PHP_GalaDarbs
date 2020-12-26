@@ -1,3 +1,6 @@
+body { 
+    height: 100%;
+}
 /* kalendārs */
 table.calendar { 
     margin: 0 auto;
@@ -53,7 +56,7 @@ td.calendar-day, td.calendar-day-np {
     border-bottom:1px solid #999; 
     border-right:1px solid #999; 
 }
-
+/* text*/
 .crop-text-4{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -70,4 +73,17 @@ td.calendar-day, td.calendar-day-np {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: pre-line;
+}
+#footer{
+    clear: both;
+    border-top: 1px groove #6c757d;
+    background: #6c757d;
+    color: black;
+    padding: 1em;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    margin-top: 4em;
+    bottom: 0px!important;
+    width: 100%;
 }

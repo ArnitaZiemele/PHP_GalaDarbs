@@ -19,13 +19,13 @@
         $sql = "UPDATE users SET full_name = ?, gender = ?, email = ? WHERE id = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt, "sssi", $full_name, $gender, $email, $param_id);
-            $param_id = $_SESSION["id"];
+            mysqli_stmt_bind_param($stmt, "sssi", $full_name, $gender, $email, $id);
+            $id = $_SESSION["id"];
             
             if(mysqli_stmt_execute($stmt)){
                 // info veiksmīgi noaminīts, redirekto uz profila lapu un ieseto jaunos parametrus
                 header("location: index.php?page=profile");
-    
+
                 $_SESSION["full_name"] = $full_name;
                 $_SESSION["gender"] = $gender;
                 $_SESSION["email"] = $email;   

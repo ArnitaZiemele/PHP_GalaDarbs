@@ -56,6 +56,13 @@
         while($row = mysql_fetch_assoc($result)) {
             $articles[$row['id']][] = $row;
         }
+        //meklēšanas forma
+    ?>
+        <form action="index.php?page=article-search" method="post">  
+            Search: <input type="text" name="svar" /><br />  
+            <input type="submit" value="Submit" />  
+        </form> 
+    <?php
         //izvada iegūto info
         foreach ($articles as $a) {
             foreach ($a as $article) {
@@ -72,7 +79,7 @@
 
     <br>
     <h2>Pievienot jaunu rakstu: </h2>	
-    <form action="index.php?page=articles" method="post">
+    <form action="index.php?page=articles" method="post" accept-charset="UTF-8">
         <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
             <label>Nosaukums</label>
             <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">

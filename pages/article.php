@@ -1,7 +1,6 @@
 <div class="container mt-3">    
     <?php 
         require_once "widgets/config.php";
-        header("Content-Type: text/html;charset=UTF-8");
         error_reporting(E_ALL ^ E_DEPRECATED);
         $page="article";
         $id = $_GET['id'];
@@ -14,7 +13,7 @@
                 $content = trim($_POST["content"]);
             }
             
-            // Pārbauda vai nav kļūdas, pirms pievieno datubāzei 
+            // Pārbauda vai nav kļūdas, pirms pievieno datubāzei
             mysql_query("set names 'utf8'");
             if(empty($content_err)){
                 $sql = "INSERT INTO comments (user_id, article_id , content) VALUES (?, ?, ?)";
@@ -79,6 +78,7 @@
                     <p><?php echo $comment['username']; ?></p>
                     <p><?php echo $comment['created_at']; ?></p>
                     <p><?php echo nl2br($comment['content']); ?></p>
+                    <a class="btn btn-danger" href="widgets/comment-delete.php?id=<?php echo $id; ?>" onclick="return  confirm('Vēlaties dzēst šo komentāru?')">Dzēst</a>
                 </article>    
             <?php }    
         }

@@ -26,7 +26,7 @@
 					mysqli_stmt_bind_param($stmt, "ss", $title, $event_date);
 
 					if(mysqli_stmt_execute($stmt)){
-						header('location: index.php?page=events');
+						header('location: index.php?page=events&month='.date(m).'&year='.date(Y));
 					} else{
 						echo "Kaut kas nogāja greizi... Lūdzu mēģiniet vēlreiz.";
 					}

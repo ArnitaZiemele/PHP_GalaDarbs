@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['activePage'] = isset($_GET['page']) ? $_GET['page'] : null;
+    header("Content-Type: text/html;charset=UTF-8");
 ?>
 
 <!doctype html>
@@ -20,8 +21,9 @@
             elseif($_GET['page']=='events') {include 'pages/events.php';}
             elseif($_GET['page']=='articles') {include 'pages/articles.php';}
             elseif($_GET['page']=='article') {include 'pages/article.php';}
-            elseif($_GET['page']=='article-edit') {include 'pages/article-edit.php';} 
-            elseif($_GET['page']=='contact') {include 'pages/contact.php';}
+            elseif($_GET['page']=='article-edit') {include 'pages/article-edit.php';}
+            elseif($_GET['page']=='article-search') {include 'pages/article-search.php';}  
+            elseif($_GET['page']=='about') {include 'pages/about.php';}
             elseif($_GET['page']=='profile') {include 'pages/profile.php';} 
             elseif($_GET['page']=='profile-edit') {include 'pages/profile-edit.php';} 
             elseif($_GET['page']=='login') {include 'pages/login.php';} 
@@ -30,5 +32,6 @@
             elseif($_GET['page']=='reset-password') {include 'pages/reset-password.php';} 
             elseif($_GET['page']=='welcome') {include 'pages/welcome.php';} 
         ?>
+        <div class="footer" id="footer">© 2020 Copyright: Arnita Ziemele</div>
     </body>
 </html>
