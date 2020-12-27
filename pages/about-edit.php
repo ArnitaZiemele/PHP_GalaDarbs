@@ -36,17 +36,15 @@
     mysqli_free_result($result);
 ?>
 
-<div class="container mt-3">
-    <h2>Labot par mani</h2>
-    <form action="index.php?page=about-edit" method="post" enctype='multipart/form-data'>  
-        <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
-            <label>Saturs</label>
-            <textarea rows="15" name="content" class="form-control"><?php echo $about['content']; ?></textarea>
-            <span class="help-block"><?php echo $content_err; ?></span>
-        </div>   
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Mainīt">
-            <a class="btn btn-secondary" href="index.php?page=about">Atcelt</a>
-        </div>
-    </form>
-</div> 
+<h2>Labot par mani</h2>
+<form action="index.php?page=about-edit" method="post" enctype='multipart/form-data'>  
+    <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
+        <label>Saturs</label>
+        <textarea rows="15" name="content" class="form-control"><?php echo $about['content']; ?></textarea>
+        <span class="help-block"><?php echo $content_err; ?></span>
+    </div>   
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Mainīt">
+        <a class="btn btn-secondary" href="index.php?page=about">Atcelt</a>
+    </div>
+</form>

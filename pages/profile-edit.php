@@ -36,8 +36,8 @@
         }        
     }  
 ?>
-/** TODO panākt lai atceras kāds ir patreizējais gender un to piedāvā pirmo **/
-<div class="container mt-3" style="width: 400px">
+
+<div class="container" style="width: 400px">
     <h2>Labot profilu</h2>
     <p>Lūdzu aizpildiet laukus, ko vēlaties labot.</p>
     <form action="index.php?page=profile-edit" method="post"> 

@@ -43,24 +43,22 @@
     mysqli_free_result($result);
 ?>
 
-<div class="container mt-3">
-    <h2>Labot rakstu</h2>
-    <p>Lūdzu aizpildiet laukus, ko vēlaties labot.</p>
-    <form action="index.php?page=article-edit&id=<?php echo $id; ?>" method="post"> 
-    <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
-        <label>Nosaukums</label>
-        <input type="text" name="title" class="form-control" value="<?php echo $article['title']; ?>">
-        <span class="help-block"><?php echo $title_err; ?></span>
-    </div>    
-    <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
-        <label>Saturs</label>
-        <textarea rows="15" name="content" class="form-control"><?php echo $article['content']; ?></textarea>
-        <span class="help-block"><?php echo $content_err; ?></span>
-    </div>   
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Mainīt">
-        <a class="btn btn-secondary" href="index.php?page=article&id=<?php echo $id; ?>">Atcelt</a>
-        <a class="btn btn-danger" href="widgets/article-delete.php?id=<?php echo $id; ?>" onclick="return  confirm('Vēlaties dzēst šo rakstu?')">Dzēst</a>
-    </div>
-    </form>
-</div> 
+<h2>Labot rakstu</h2>
+<p>Lūdzu aizpildiet laukus, ko vēlaties labot.</p>
+<form action="index.php?page=article-edit&id=<?php echo $id; ?>" method="post"> 
+<div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
+    <label>Nosaukums</label>
+    <input type="text" name="title" class="form-control" value="<?php echo $article['title']; ?>">
+    <span class="help-block"><?php echo $title_err; ?></span>
+</div>    
+<div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
+    <label>Saturs</label>
+    <textarea rows="15" name="content" class="form-control"><?php echo $article['content']; ?></textarea>
+    <span class="help-block"><?php echo $content_err; ?></span>
+</div>   
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Mainīt">
+    <a class="btn btn-secondary" href="index.php?page=article&id=<?php echo $id; ?>">Atcelt</a>
+    <a class="btn btn-danger" href="widgets/article-delete.php?id=<?php echo $id; ?>" onclick="return  confirm('Vēlaties dzēst šo rakstu?')">Dzēst</a>
+</div>
+</form>

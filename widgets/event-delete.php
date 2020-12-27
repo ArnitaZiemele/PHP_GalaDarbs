@@ -1,5 +1,6 @@
 <?php
     $id = $_GET['id'];
+    require_once "config.php";
     
     //iegūst raksta info
     $sql = "DELETE FROM events WHERE id=$id";

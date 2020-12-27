@@ -8,14 +8,14 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <link rel="stylesheet" href="styles/bootstrap.min.css">
-        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
         <title>Arnitas Ziemeles mājaslapa</title>
     </head>
     <body>
+        <?php include 'widgets/menu.php';?>
+        <article class="container pt-5 pb-3">
         <?php 
-            include 'widgets/menu.php';
-
             if(!isset($_GET['page'])) {include 'pages/home.php';}
             elseif($_GET['page']=='gallery') {include 'pages/gallery.php';}
             elseif($_GET['page']=='events') {include 'pages/events.php';}
@@ -33,6 +33,7 @@
             elseif($_GET['page']=='reset-password') {include 'pages/reset-password.php';} 
             elseif($_GET['page']=='welcome') {include 'pages/welcome.php';} 
         ?>
-        <div class="footer" id="footer">© 2020 Copyright: Arnita Ziemele</div>
+        </article>
+        <footer>© 2020 Copyright: Arnita Ziemele</footer>
     </body>
 </html>

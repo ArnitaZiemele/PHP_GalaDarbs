@@ -7,7 +7,7 @@
     }
 ?>
 
-<div class="container mt-3" style="width: 400px">
+<div class="container" style="width: 400px">
     <h4 class="mb-0 mt-0"><?php echo $_SESSION['full_name']; ?></h4><br>
     <span><?php echo $_SESSION['gender']; ?></span><br><br>
     <span><?php echo $_SESSION['email']; ?></span><br><br>

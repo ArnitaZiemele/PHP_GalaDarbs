@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar border-bottom">
     <ul class="nav">
         <li class="nav-item"><a class="nav-link <?php if(!isset($_SESSION['activePage'])) {echo "active";} ?>" href="index.php">Sākums</a></li>
         <li class="nav-item"><a class="nav-link <?php if($_SESSION['activePage']=='gallery') {echo "active";} ?>" href="index.php?page=gallery">Galerija</a></li>

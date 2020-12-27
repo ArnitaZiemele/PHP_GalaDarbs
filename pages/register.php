@@ -70,7 +70,7 @@
     }
 ?>
 
-<div class="container mt-3" style="width: 400px">
+<div class="container" style="width: 400px">
     <h2>Reģistrēties</h2>
     <p>Lūdzu aizpildiet visus zemākos laukus.</p>
     <form action="index.php?page=register" method="post">

@@ -1,0 +1,154 @@
+html, body {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+article {
+    flex-grow: 1;
+}
+
+/******************* text *****************************/
+.crop-text-4{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+}
+
+.crop-text-2{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+}
+
+.h3, h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/***************************** kalendārs *****************************/
+table.calendar { 
+    margin: 0 auto;
+    width: 900px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px #C3C3C3;
+    -webkit-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+    box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.18);
+}
+td.calendar-day	{
+    min-height:80px; 
+    font-size:11px; 
+    position:relative; 
+} 
+* html div.calendar-day { 
+    height:80px; 
+}
+td.calendar-day:hover { 
+    background:#eceff5; 
+}
+td.calendar-day-np {
+    background:#eee; 
+    min-height:80px; 
+} 
+* html div.calendar-day-np { 
+    height:80px; 
+}
+td.calendar-day-head { 
+    background:#ccc; 
+    font-weight:bold; 
+    text-align:center; 
+    width:120px; 
+    padding:5px; 
+    border-bottom:1px solid #999; 
+    border-top:1px solid #999; 
+    border-right:1px solid #999; 
+}
+div.day-number { 
+    background:#999; 
+    padding:5px; 
+    color:#fff; 
+    font-weight:bold; 
+    float:right; 
+    margin:-5px -5px 0 0; 
+    width:20px; 
+    text-align:center; 
+}
+td.calendar-day, td.calendar-day-np {
+    width:120px; 
+    padding:5px; 
+    border-bottom:1px solid #999; 
+    border-right:1px solid #999; 
+}
+
+/****************************** Gallery *******************************/
+#lightgallery {display: table; width: calc(100% + 10px); margin: 0 -5px;}
+#lightgallery .light_gallery_item {float: left; padding: 0 5px 5px 5px; position: relative;}
+#lightgallery .light_gallery_item .image_wrapper {height: 150px; width: 150px; display: block; 
+background-position: center; background-size: cover;}
+#lightgallery .light_gallery_item input {
+    position: absolute;
+    display: none;
+}
+#lightgallery .light_gallery_item input + label {
+    position: absolute; 
+    left: 5px;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+#lightgallery .light_gallery_item input + label:before {
+    content: "";
+    display: block;
+    left: 4px;
+    top: 4px;
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+    position: absolute;
+}
+#lightgallery .light_gallery_item input:checked + label:before {
+    background-color: #000;
+}
+
+/****************************** Home - closest events *******************************/
+.closest-events i {font-size: 14px;}
+
+/****************************** Articles *******************************/
+.articles-list .article {margin-bottom: 10px;}
+.articles-list .article:last-child {margin-bottom: 0;}
+.article a {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    display: block;
+    color:#000;
+}
+.article a:hover {
+    background-color: #dee2e6;
+    text-decoration: none;
+}
+
+/********************* Footer **************************/
+footer{
+    clear: both;
+    border-top: 1px groove #6c757d;
+    background: #6c757d;
+    color: black;
+    padding: 1em;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    bottom: 0px!important;
+    width: 100%;
+}
