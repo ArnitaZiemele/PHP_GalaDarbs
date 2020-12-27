@@ -1,26 +1,17 @@
 <div class="container mt-3">   
     <?php
-        $page="article-search";
-        require_once "widgets/config.php";
+        $page="article-search";        
         header("Content-Type: text/html;charset=UTF-8");
         error_reporting(E_ALL ^ E_DEPRECATED);
 
-        //iegūst info no datubāzes
-        $db_link = mysql_connect("localhost","root","");
-        if (!$db_link){
-            die('Could not connect: ' . mysql_error());
-        }
-        mysql_select_db("privatamajaslapa", $db_link);
-        mysql_query("set names 'utf8'");
-
+        //Iegūst atslēgvārdam atbilstošo info
         if (!empty($_REQUEST['svar'])) {
-
-            $svar = mysql_real_escape_string($_REQUEST['svar']);     
+            $svar = mysqli_real_escape_string($link, $_REQUEST['svar']);     
 
             $sql = "SELECT * FROM articles WHERE title LIKE '%".$svar."%'"; 
-            $result = mysql_query($sql); 
+            $result = mysqli_query($link, $sql) or die('cannot get results!'); 
             $articles = array();
-            while ($row = mysql_fetch_array($result)){  
+            while ($row = mysqli_fetch_array($result)){  
                 $articles[$row['id']][] = $row;
             }  
         }

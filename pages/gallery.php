@@ -14,12 +14,13 @@
     <h2>Uploaded images:</h2>
     <form action="widgets/photos.php" method="post">
     <?php
-        $result = mysql_query("SELECT id, image_time, title FROM {$table} ORDER BY id DESC");
-        if (@mysql_num_rows($result) == 0)   // tabula ir tukša  
+        $sql = "SELECT id, image_time, title FROM {$table} ORDER BY id DESC"; 
+        $result = mysqli_query($link, $sql) or die('cannot get results!'); 
+        if (@mysqli_num_rows($result) == 0)   // tabula ir tukša  
             echo '<ul><li>No images loaded</li></ul>';
         else {   
             echo '<ul>';    
-            while(list($id, $image_time, $title) = mysql_fetch_row($result)){ // izvadam sarakstu 
+            while(list($id, $image_time, $title) = mysqli_fetch_row($result)){ // izvadam sarakstu 
                 ?>
                 <li>
                     <input type="radio" name="del" value="<?php echo $id; ?>">

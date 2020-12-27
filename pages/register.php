@@ -1,5 +1,4 @@
 <?php
-    require_once "widgets/config.php";
     $page="register";
     
     $username = $password = $confirm_password = "";
@@ -28,7 +27,6 @@
                 } else{
                     echo "Kaut kas nogāja greizi... Lūdzu mēģiniet vēlreiz.";
                 }
-                mysqli_stmt_close($stmt);
             }
         }
         
@@ -64,12 +62,11 @@
                     // Aizsūta uz redirect lapu
                     header("location: index.php?page=login");
                 } else{
-                    echo "Kaut kas nogāja greizi... Lūdzu mēģiniet vēlreiz.";
+                    echo "Kaut kas nogāja greizi... Lūdzu mēģiniet vēlreiz...";
                 }
                 mysqli_stmt_close($stmt);
             }
         }
-        mysqli_close($link);
     }
 ?>
 

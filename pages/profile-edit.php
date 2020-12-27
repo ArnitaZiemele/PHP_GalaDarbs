@@ -6,7 +6,6 @@
         exit;
     }
     
-    require_once "widgets/config.php";
     $full_name = $_SESSION["full_name"];
     $gender = $_SESSION["gender"];
     $email = $_SESSION["email"];
@@ -34,8 +33,7 @@
                 echo "Kaut kas nogāja greizi... Lūdzu mēģiniet vēlreiz.";
             }
             mysqli_stmt_close($stmt);
-        }
-        mysqli_close($link);
+        }        
     }  
 ?>
 /** TODO panākt lai atceras kāds ir patreizējais gender un to piedāvā pirmo **/

@@ -1,7 +1,7 @@
 <?php
     session_start();
     $_SESSION['activePage'] = isset($_GET['page']) ? $_GET['page'] : null;
-    header("Content-Type: text/html;charset=UTF-8");
+    require_once "widgets/config.php";
 ?>
 
 <!doctype html>
@@ -16,7 +16,7 @@
         <?php 
             include 'widgets/menu.php';
 
-            if(!isset($_GET['page'])) {include 'pages/home.php';} 
+            if(!isset($_GET['page'])) {include 'pages/home.php';}
             elseif($_GET['page']=='gallery') {include 'pages/gallery.php';}
             elseif($_GET['page']=='events') {include 'pages/events.php';}
             elseif($_GET['page']=='articles') {include 'pages/articles.php';}

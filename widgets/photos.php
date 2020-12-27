@@ -1,25 +1,17 @@
-<?php
-        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-        ini_set('display_errors',1);
-    
-        $db_host = "localhost"; 
-        $db_user = "root";
-        $db_pwd = "";
-        $database = "privatamajaslapa";
-        
-        if (!mysql_connect($db_host, $db_user, $db_pwd)) die("Can't connect to database");
-        if (!mysql_select_db($database))    die("Can't select database");
-    
+<?php  
     $table = "gallery";
-
-    function  sql_safe($s){ 
-        if (get_magic_quotes_gpc()) 
-            $s = stripslashes($s); 
-        return mysql_real_escape_string($s);
-    }
+    require_once "config.php";
+    $s="";
     // Ja lietotājs nospiež "Submit" jebkurā no formam
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $title = trim(sql_safe($_POST['title']));//notīra nosaukumu
+        if(array_key_exists('title', $_POST)) {//notīra nosaukumu
+            if (get_magic_quotes_gpc()) 
+                $s = stripslashes($$_POST['title']); 
+            $title = trim(mysqli_real_escape_string($link, $s));
+        }
+        else {
+            $title = "";
+        }
         if ($title == '')  // ja nosaukums ir tukšs   
             $title = '(empty title)';  // izmanto (empty title)        
         if (isset($_FILES['photo'])){            
@@ -34,10 +26,9 @@
                 $msg = 'Error: unknown file format'; 
             if (!isset($msg)) {//Ja nav kļūdu                
                 $data = file_get_contents($_FILES['photo']['tmp_name']);    
-                $data = mysql_real_escape_string($data);
-                mysql_query("INSERT INTO {$table}    
-                                SET ext='$ext', title='$title',  
-                                            data='$data'"); 
+                $data = mysqli_real_escape_string($link, $data);
+                $sql = "INSERT INTO {$table} SET ext='$ext', title='$title', data='$data'";
+                mysqli_query($link, $sql) or die('cannot get results!');
                 $msg = 'Success: image uploaded';   
             }        
         }        
@@ -45,17 +36,20 @@
             $msg = 'Error: file not loaded';
         if (isset($_POST['del'])){ //ja attēls atzīmēts dzēšanai  
             $id = intval($_POST['del']);  
-            mysql_query("DELETE FROM {$table} WHERE id=$id");  
+            $sql = "DELETE FROM {$table} WHERE id=$id";
+            mysqli_query($link, $sql) or die('cannot get results!'); 
+            header('location: ../index.php?page=gallery');
             $msg = 'Photo deleted';       
         }
     }
     elseif (isset($_GET['show'])){    
         $id = intval($_GET['show']); 
-        $result = mysql_query("SELECT ext, UNIX_TIMESTAMP(image_time), data 
-                                    FROM {$table} WHERE id=$id LIMIT 1"); 
-        if (mysql_num_rows($result) == 0)    
+        $sql = "SELECT ext, UNIX_TIMESTAMP(image_time), data 
+        FROM {$table} WHERE id=$id LIMIT 1";
+        $result = mysqli_query($link, $sql) or die('cannot get results!');
+        if (mysqli_num_rows($result) == 0)    
             die('no image');    
-        list($ext, $image_time, $data) = mysql_fetch_row($result); 
+        list($ext, $image_time, $data) = mysqli_fetch_row($result); 
         $send_304 = false;    
         if (php_sapi_name() == 'apache') {
             $ar = apache_request_headers(); 

@@ -1,7 +1,5 @@
 <div class="container mt-3">    
     <?php 
-        require_once "widgets/config.php";
-        error_reporting(E_ALL ^ E_DEPRECATED);
         $page="article";
         $id = $_GET['id'];
         // Apstrādāt iesniegto komentāra formu
@@ -14,7 +12,6 @@
             }
             
             // Pārbauda vai nav kļūdas, pirms pievieno datubāzei
-            mysql_query("set names 'utf8'");
             if(empty($content_err)){
                 $sql = "INSERT INTO comments (user_id, article_id , content) VALUES (?, ?, ?)";
                 if($stmt = mysqli_prepare($link, $sql)){
@@ -28,28 +25,20 @@
                     mysqli_stmt_close($stmt);
                 }
             }
-            mysqli_close($link);
         }
-
         $title = $content = "";
         $title_err = $content_err = "";
-        //iegūst raksta info
-        $db_link = mysql_connect("localhost","root","");
-        if (!$db_link){
-            die('Could not connect: ' . mysql_error());
-        }
-        mysql_select_db("privatamajaslapa", $db_link);
-        mysql_query("set names 'utf8'");
-        
-        mysql_query("UPDATE articles SET view_count = view_count+1 WHERE id=$id");//skaita cik reižu apskatīts raksts
 
-        $query = "SELECT title, DATE_FORMAT(create_date,'%e.%m.%Y') AS create_date, content, view_count 
+        //iegūst raksta info  
+        mysqli_query($link, "UPDATE articles SET view_count = view_count+1 WHERE id=$id");//skaita cik reižu apskatīts raksts
+
+        $sql = "SELECT title, DATE_FORMAT(create_date,'%e.%m.%Y') AS create_date, content, view_count 
         FROM articles WHERE id=$id";
-        $result = mysql_query($query,$db_link) or die('cannot get results!');
+        $result = mysqli_query($link, $sql) or die('cannot get results!');
 
-        $article = mysql_fetch_assoc($result);
+        $article = mysqli_fetch_assoc($result);
 
-        mysql_free_result($result);
+        mysqli_free_result($result);
 
     ?>
     <!-- raksts -->
@@ -63,11 +52,11 @@
     <h2>Komentāri</h2>
     <?php
         //iegūst raksta komentārus
-        $query = "SELECT c.id, u.username, DATE_FORMAT(c.created_at,'%e.%m.%Y %H:%s') AS created_at, c.content
+        $sql = "SELECT c.id, u.username, DATE_FORMAT(c.created_at,'%e.%m.%Y %H:%s') AS created_at, c.content
         FROM comments c JOIN users u on c.user_id=u.id WHERE c.article_id=$id";
-        $result = mysql_query($query,$db_link) or die('cannot get results!');
+        $result = mysqli_query($link, $sql) or die('cannot get results!');
         $comments = array();
-        while($row = mysql_fetch_assoc($result)) {
+        while($row = mysqli_fetch_assoc($result)) {
             $comments[$row['id']][] = $row;
         }
         //izvada iegūto info
@@ -82,7 +71,7 @@
                 </article>    
             <?php }    
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
     ?>
     <!-- pievienot jaunu komentāru -->
     <br>

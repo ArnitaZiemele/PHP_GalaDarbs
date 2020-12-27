@@ -1,8 +1,4 @@
 <?php
-	header("Content-Type: text/html;charset=UTF-8");
-
-	error_reporting(E_ALL ^ E_DEPRECATED);
-
 	function draw_calendar($month,$year,$events = array()){// Zīmē kalendāru kā tabulu
 		$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
 		//tabulas galvene
@@ -83,17 +79,10 @@
 	$controls = '<form method="get">'.$previous_month_link.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$next_month_link.' </form>';
 
 	//iegūst visus mēneša eventus
-	$db_link = mysql_connect("localhost","root","");
-	if (!$db_link){
-		die('Could not connect: ' . mysql_error());
-	}
-	mysql_select_db("privatamajaslapa", $db_link);
-	mysql_query("set names 'utf8'");
-
 	$events = array();
-	$query = "SELECT id, title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";
-	$result = mysql_query($query,$db_link) or die('cannot get results!');
-	while($row = mysql_fetch_assoc($result)) {
+	$sql = "SELECT id, title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";
+	$result = mysqli_query($link, $sql) or die('cannot get results!');
+	while($row = mysqli_fetch_assoc($result)) {
 		$events[$row['event_date']][] = $row;
 	}
 ?>

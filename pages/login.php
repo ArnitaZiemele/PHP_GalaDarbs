@@ -7,7 +7,6 @@
         exit;
     }
 
-    require_once "widgets/config.php";
     $username = $password = "";
     $username_err = $password_err = "";
     
@@ -53,7 +52,7 @@
                                 $_SESSION["email"] = $email;                         
                                 
                                 // Redirect uz sākumu
-                                header("location: index.php?page=index.php");
+                                header("location: index.php");
                             } else{
                                 // Error, ja parole nav pareiza
                                 $password_err = "Parole ievadīta nepareizi.";
@@ -69,7 +68,6 @@
                 mysqli_stmt_close($stmt);
             }
         }
-        mysqli_close($link);
     }
 ?>
 

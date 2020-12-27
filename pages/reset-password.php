@@ -6,7 +6,6 @@
         exit;
     }
     
-    require_once "widgets/config.php";
     $new_password = $confirm_password = "";
     $new_password_err = $confirm_password_err = "";
 
@@ -50,7 +49,6 @@
                 mysqli_stmt_close($stmt);
             }
         }
-        mysqli_close($link);
     }
 ?>
 

@@ -1,6 +1,5 @@
 <div class="container mt-3">
 	<?php 
-    	require_once "widgets/config.php";
 		require_once "widgets/draw-calendar.php";
 		$page="events";
 
@@ -33,7 +32,6 @@
 					mysqli_stmt_close($stmt);
 				}
 			}
-			mysqli_close($link);
 		}
 
 		//uzzīmē calendāru ar kontrolēm
