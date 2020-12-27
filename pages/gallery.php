@@ -23,7 +23,9 @@
             while(list($id, $image_time, $title) = mysqli_fetch_row($result)){ // izvadam sarakstu 
                 ?>
                 <li>
-                    <input type="radio" name="del" value="<?php echo $id; ?>">
+                    <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+                        <input type="radio" name="del" value="<?php echo $id; ?>">
+                    <?php } ?>
                     <a href="widgets/photos.php?show=<?php echo $id; ?>">
                         <img src="widgets/photos.php?show=<?php echo $id; ?>" title="<?php echo $title; ?>"/>    
                     </a>
@@ -31,18 +33,22 @@
                 </li>
             <?php } ?>
             </ul>
-            <input type="submit" class="btn btn-danger" value="Delete selected">
+            <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+                <input type="submit" class="btn btn-danger" value="Delete selected">
+            <?php } ?>
         <?php } ?>
     </form>
-    <br><hr/><br>
-    <h2>Upload new image:</h2>
-    <form action="index.php?page=gallery" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="title">Title:</label><br><input type="text" name="title" id="title" size="64">
-        </div>
-        <div class="form-group">
-            <label for="photo">Photo:</label><br><input type="file" name="photo" id="photo">
-        </div>
-        <input type="submit" class="btn btn-primary" value="Augšupielādēt">
-    </form>
+    <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+        <br><hr/><br>
+        <h2>Upload new image:</h2>
+        <form action="index.php?page=gallery" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title:</label><br><input type="text" name="title" id="title" size="64">
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo:</label><br><input type="file" name="photo" id="photo">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Augšupielādēt">
+        </form>
+    <?php } ?>
 </div>  

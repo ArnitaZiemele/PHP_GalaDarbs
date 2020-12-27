@@ -43,21 +43,21 @@
 		$title = $event_date = "";
     	$title_err = $date_err = "";
     
-	?>
-
-	<h2>Pievienot jaunu pasākumu: </h2>	
-	<form action="index.php?page=events" method="post">
-		<div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
-			<label>Nosaukums</label>
-			<input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
-			<span class="help-block"><?php echo $title_err; ?></span>
-		</div>    
-		<div class="form-group <?php echo (!empty($date_err)) ? 'has-error' : ''; ?>">
-			<label>Datums</label>
-			<input type="date" name="event_date" class="form-control" value="<?php echo $event_date; ?>">
-			<span class="help-block"><?php echo $date_err; ?></span>
-		</div> 
-		<input type="submit" class="btn btn-primary" value="Pievienot">
-		<input type="reset" class="btn btn-secondary" value="Atjaunot">
-    </form>
+	if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+		<h2>Pievienot jaunu pasākumu: </h2>	
+		<form action="index.php?page=events" method="post">
+			<div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
+				<label>Nosaukums</label>
+				<input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
+				<span class="help-block"><?php echo $title_err; ?></span>
+			</div>    
+			<div class="form-group <?php echo (!empty($date_err)) ? 'has-error' : ''; ?>">
+				<label>Datums</label>
+				<input type="date" name="event_date" class="form-control" value="<?php echo $event_date; ?>">
+				<span class="help-block"><?php echo $date_err; ?></span>
+			</div> 
+			<input type="submit" class="btn btn-primary" value="Pievienot">
+			<input type="reset" class="btn btn-secondary" value="Atjaunot">
+		</form>
+	<?php } ?>
 </div>

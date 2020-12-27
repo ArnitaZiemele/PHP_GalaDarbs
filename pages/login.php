@@ -29,7 +29,7 @@
         
         // Validate credentials
         if(empty($username_err) && empty($password_err)){
-            $sql = "SELECT id, username, password, full_name, gender, email FROM users WHERE username = ?";
+            $sql = "SELECT id, role, username, password, full_name, gender, email FROM users WHERE username = ?";
             if($stmt = mysqli_prepare($link, $sql)){
                 mysqli_stmt_bind_param($stmt, "s", $param_username);
                 $param_username = $username;
@@ -37,7 +37,7 @@
                     mysqli_stmt_store_result($stmt);
                     // Pārbauda vai lietotājvārds eksistē, ja ir, tad pārbauda paroli
                     if(mysqli_stmt_num_rows($stmt) == 1){
-                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $full_name, $gender, $email);
+                        mysqli_stmt_bind_result($stmt, $id, $role, $username, $hashed_password, $full_name, $gender, $email);
                         if(mysqli_stmt_fetch($stmt)){
                             if(password_verify($password, $hashed_password)){
                                 // Ja parole pareiza, sāk jaunu sesiju
@@ -46,6 +46,7 @@
                                 // Saglabā sesijas mainīgos
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
+                                $_SESSION["role"] = $role;
                                 $_SESSION["username"] = $username;
                                 $_SESSION["full_name"] = $full_name;
                                 $_SESSION["gender"] = $gender;

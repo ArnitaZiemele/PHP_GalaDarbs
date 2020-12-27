@@ -24,6 +24,7 @@
             elseif($_GET['page']=='article-edit') {include 'pages/article-edit.php';}
             elseif($_GET['page']=='article-search') {include 'pages/article-search.php';}  
             elseif($_GET['page']=='about') {include 'pages/about.php';}
+            elseif($_GET['page']=='about-edit') {include 'pages/about-edit.php';} 
             elseif($_GET['page']=='profile') {include 'pages/profile.php';} 
             elseif($_GET['page']=='profile-edit') {include 'pages/profile-edit.php';} 
             elseif($_GET['page']=='login') {include 'pages/login.php';} 

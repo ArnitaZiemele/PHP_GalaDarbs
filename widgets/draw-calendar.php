@@ -25,7 +25,10 @@
 				$event_day = $year.'-'.$month.'-'.$list_day;
 				if(isset($events[$event_day])) {
 					foreach($events[$event_day] as $event) {
-						$calendar.= '<div class="event">'.$event['title'].'<a href="widgets/event-delete.php?id='.$event['id'].'">X</a></div>';
+						$calendar.= '<div class="event">'.$event['title'];
+						if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin'){
+							$calendar.= '<a href="widgets/event-delete.php?id='.$event['id'].'">X</a></div>';
+						}
 					}
 				}
 				else {

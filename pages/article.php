@@ -44,7 +44,9 @@
     <!-- raksts -->
     <h1><?php echo $article['title']; ?></h1>
     <p>Skatīts <?php echo $article['view_count']; ?> reizes</p>
-    <p><a href="index.php?page=article-edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Labot rakstu</a></p>
+    <?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+        <p><a href="index.php?page=article-edit&id=<?php echo $id; ?>" class="btn btn-sm btn-primary">Labot rakstu</a></p>
+    <?php } ?>
     <p><?php echo $article['create_date']; ?></p>
     <p class="text-justify"><?php echo nl2br($article['content']); ?></p>
 
@@ -67,21 +69,27 @@
                     <p><?php echo $comment['username']; ?></p>
                     <p><?php echo $comment['created_at']; ?></p>
                     <p><?php echo nl2br($comment['content']); ?></p>
-                    <a class="btn btn-danger" href="widgets/comment-delete.php?id=<?php echo $id; ?>" onclick="return  confirm('Vēlaties dzēst šo komentāru?')">Dzēst</a>
+                    <?php if (isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+                        <a class="btn btn-danger" href="widgets/comment-delete.php?id=<?php echo $id; ?>" onclick="return  confirm('Vēlaties dzēst šo komentāru?')">Dzēst</a>
+                    <?php } ?>
                 </article>    
             <?php }    
         }
         mysqli_free_result($result);
+    //pievienot jaunu komentāru
+    
+    if(isset($_SESSION['username']) && ($_SESSION['role'] == 'registered' || $_SESSION['role'] == 'admin')) {
+        ?>
+        <br>
+        <h2>Pievienot jaunu komentāru: </h2>	
+        <form action="index.php?page=article&id=<?php echo $id; ?>" method="post">   
+            <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
+                <label>Komentārs</label>
+                <textarea rows="4" name="content" class="form-control" value="<?php echo $content; ?>"></textarea>
+                <span class="help-block"><?php echo $content_err; ?></span>
+            </div>   
+            <input type="submit" class="btn btn-primary" value="Pievienot">
+        </form>
+        <?php } 
     ?>
-    <!-- pievienot jaunu komentāru -->
-    <br>
-    <h2>Pievienot jaunu komentāru: </h2>	
-    <form action="index.php?page=article&id=<?php echo $id; ?>" method="post">   
-        <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
-            <label>Komentārs</label>
-            <textarea rows="4" name="content" class="form-control" value="<?php echo $content; ?>"></textarea>
-            <span class="help-block"><?php echo $content_err; ?></span>
-        </div>   
-        <input type="submit" class="btn btn-primary" value="Pievienot">
-    </form>
 </div>

@@ -63,22 +63,22 @@
                 </article>    
             <?php }    
         }
-    ?>
-
-    <br>
-    <h2>Pievienot jaunu rakstu: </h2>	
-    <form action="index.php?page=articles" method="post" accept-charset="UTF-8">
-        <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
-            <label>Nosaukums</label>
-            <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
-            <span class="help-block"><?php echo $title_err; ?></span>
-        </div>    
-        <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
-            <label>Saturs</label>
-            <textarea rows="4" name="content" class="form-control" value="<?php echo $content; ?>"></textarea>
-            <span class="help-block"><?php echo $content_err; ?></span>
-        </div>   
-        <input type="submit" class="btn btn-primary" value="Pievienot">
-        <input type="reset" class="btn btn-secondary" value="Atjaunot">
-    </form>
+    if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
+        <br>
+        <h2>Pievienot jaunu rakstu: </h2>	
+        <form action="index.php?page=articles" method="post" accept-charset="UTF-8">
+            <div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
+                <label>Nosaukums</label>
+                <input type="text" name="title" class="form-control" value="<?php echo $title; ?>">
+                <span class="help-block"><?php echo $title_err; ?></span>
+            </div>    
+            <div class="form-group <?php echo (!empty($content_err)) ? 'has-error' : ''; ?>">
+                <label>Saturs</label>
+                <textarea rows="4" name="content" class="form-control" value="<?php echo $content; ?>"></textarea>
+                <span class="help-block"><?php echo $content_err; ?></span>
+            </div>   
+            <input type="submit" class="btn btn-primary" value="Pievienot">
+            <input type="reset" class="btn btn-secondary" value="Atjaunot">
+        </form>
+    <?php } ?>
 </div>
