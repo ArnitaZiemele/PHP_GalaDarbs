@@ -2,6 +2,15 @@
 	require_once "widgets/draw-calendar.php";
 	$page="events";
 
+	if(isset($_GET['month']) && isset($_GET['year'])){
+		$month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
+		$year = (int)  ($_GET['year'] ? $_GET['year'] : date('Y'));
+	}
+	else{
+		$month = date('m');
+		$year = date('Y');
+	}
+
 	// Apstrādāt iesniegto formu
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
@@ -18,7 +27,7 @@
 		}
 		
 		// Pārbauda vai nav kļūdas, pirms pievieno datubāzei
-		if(empty($title_err) && empty($title_err)){
+		if(empty($title_err) && empty($date_err)){
 			$sql = "INSERT INTO events (title, event_date) VALUES (?, ?)";
 			if($stmt = mysqli_prepare($link, $sql)){
 				mysqli_stmt_bind_param($stmt, "ss", $title, $event_date);
@@ -44,7 +53,7 @@
 
 if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
 	<h2>Pievienot jaunu pasākumu: </h2>	
-	<form action="index.php?page=events" method="post">
+	<form action="index.php?page=events&month=<?php echo $month ?>&year=<?php echo $year ?>" method="post">
 		<div class="form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
 			<label>Nosaukums</label>
 			<input type="text" name="title" class="form-control" value="<?php echo $title; ?>">

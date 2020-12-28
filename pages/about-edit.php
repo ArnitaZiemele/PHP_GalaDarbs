@@ -29,7 +29,7 @@
     }
 
     //iegūst par mani info  
-    $sql = "SELECT content, data
+    $sql = "SELECT content
     FROM about_me WHERE id=1";
     $result = mysqli_query($link, $sql) or die('cannot get results!');
     $about = mysqli_fetch_assoc($result);

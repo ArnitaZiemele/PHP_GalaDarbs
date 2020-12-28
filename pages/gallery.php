@@ -10,14 +10,10 @@
     <div class="alert alert-secondary" role="alert">
         <?php echo $msg?>
         <br>
-        <a href="index.php?page=gallery">reload page</a>
+        <a href="index.php?page=gallery">Pārlādēt lapu</a>
     </div>
 <?php } ?>
 <h1 class="pb-3">Galerija</h1>
-<form action="widgets/photos.php" method="post">
-<?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
-    <input type="submit" class="btn btn-danger mb-3" value="Delete selected">
-<?php } ?>
 <?php
     $sql = "SELECT id, image_time, title FROM {$table} ORDER BY id DESC"; 
     $result = mysqli_query($link, $sql) or die('cannot get results!'); 
@@ -40,7 +36,7 @@
         <?php } ?>
         </div>
         <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin') { ?>
-            <input type="submit" class="btn btn-danger" value="Delete selected">
+            <input type="submit" class="btn btn-danger" value="Dzēst izvēlēto">
         <?php } ?>
     <?php } ?>
 </form>

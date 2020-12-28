@@ -50,7 +50,7 @@
         <div class="float-right d-flex align-items-center">
             <label class="m-0">Meklēt: </label>  
             <input class="form-control ml-2 mr-2" type="text" name="svar" style="width: 200px;"/>
-            <input class="btn btn-primary" type="submit" value="Submit" />  
+            <input class="btn btn-primary" type="submit" value="Meklēt" />  
         </div>
     </form> 
     <br/>

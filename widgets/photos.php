@@ -23,23 +23,23 @@
             elseif ($imtype == 1) 
                 $ext="gif"; 
             else               
-                $msg = 'Error: unknown file format'; 
+                $msg = 'Nezināms faila formāts'; 
             if (!isset($msg)) {//Ja nav kļūdu                
                 $data = file_get_contents($_FILES['photo']['tmp_name']);    
                 $data = mysqli_real_escape_string($link, $data);
                 $sql = "INSERT INTO {$table} SET ext='$ext', title='$title', data='$data'";
                 mysqli_query($link, $sql) or die('cannot get results!');
-                $msg = 'Success: image uploaded';   
+                $msg = 'Attēls veiksmīgi augšupielādēts';   
             }        
         }        
         elseif (isset($_GET['title'])) // isset(..title) vajadzīgs  
-            $msg = 'Error: file not loaded';
+            $msg = 'Fails nav ielādēts';
         if (isset($_POST['del'])){ //ja attēls atzīmēts dzēšanai  
             $id = intval($_POST['del']);  
             $sql = "DELETE FROM {$table} WHERE id=$id";
             mysqli_query($link, $sql) or die('cannot get results!'); 
             header('location: ../index.php?page=gallery');
-            $msg = 'Photo deleted';       
+            $msg = 'Attēls izdzēsts';       
         }
     }
     elseif (isset($_GET['show'])){    

@@ -69,8 +69,14 @@
 	}
 
 	/* date settings */
-	$month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
-	$year = (int)  ($_GET['year'] ? $_GET['year'] : date('Y'));
+	if(isset($_GET['month']) && isset($_GET['year'])){
+		$month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
+		$year = (int)  ($_GET['year'] ? $_GET['year'] : date('Y'));
+	}
+	else{
+		$month = date('m');
+		$year = date('Y');
+	}
 
 	//nākošais mēnesis
 	$next_month_link = '<a href="index.php?page=events&month='.($month != 12 ? $month + 1 : 1).'&year='.($month != 12 ? $year : $year + 1).'" class="control">Nākošais mēnesis &gt;&gt;</a>';
