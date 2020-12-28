@@ -9,7 +9,7 @@
 		$days_in_month = date('t',mktime(0,0,0,$month,1,$year));
 		$days_in_this_week = 1;
 		$day_counter = 0;
-		$dates_array = array();
+		$modifiedMonth = $month < 10 ? '0'.$month : $month;
 		//pirmā nedēļa
 		$calendar.= '<tr class="calendar-row">';
 		// tukšie lauciņi līdz mēneša pirmajai dienai
@@ -22,7 +22,7 @@
 			$calendar.= '<td class="calendar-day"><div style="position:relative;height:100px;">';
 				$calendar.= '<div class="day-number">'.$list_day.'</div>';
 				
-				$event_day = $year.'-'.$month.'-'.$list_day;
+				$event_day = $year.'-'.$modifiedMonth.'-'.$list_day;
 				if(isset($events[$event_day])) {
 					foreach($events[$event_day] as $event) {
 						$calendar.= '<div class="event">'.$event['title'];
@@ -89,7 +89,8 @@
 
 	//iegūst visus mēneša eventus
 	$events = array();
-	$sql = "SELECT id, title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$month%'";
+	$modifiedMonth = $month < 10 ? '0'.$month : $month;
+	$sql = "SELECT id, title, DATE_FORMAT(event_date,'%Y-%m-%e') AS event_date FROM events WHERE event_date LIKE '$year-$modifiedMonth%'";
 	$result = mysqli_query($link, $sql) or die('cannot get results!');
 	while($row = mysqli_fetch_assoc($result)) {
 		$events[$row['event_date']][] = $row;
